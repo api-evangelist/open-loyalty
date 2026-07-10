@@ -1,0 +1,420 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Open Loyalty REST API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{jwtToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Authorization", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Admin login (get JWT).", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-instance.openloyalty.io/api/admin/login_check",
+            "body": { "type": "json", "data": "{\n  \"username\": \"admin\",\n  \"password\": \"\"\n}" }
+          },
+          "docs": "Exchanges admin credentials for a JWT bearer token."
+        },
+        {
+          "info": { "name": "Customer login (get JWT).", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/customer/login_check",
+            "params": [
+              { "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }
+            ],
+            "body": { "type": "json", "data": "{\n  \"username\": \"\",\n  \"password\": \"\"\n}" }
+          },
+          "docs": "Exchanges member credentials for a JWT bearer token."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Members", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Register a member.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/customer/register",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }],
+            "body": { "type": "json", "data": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Doe\",\n  \"email\": \"jane@example.com\"\n}" }
+          },
+          "docs": "Registers a new loyalty member."
+        },
+        {
+          "info": { "name": "List members.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/customer",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }]
+          },
+          "docs": "Lists loyalty members, paginated."
+        },
+        {
+          "info": { "name": "Check member by email or phone.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/customer/check?email=jane@example.com",
+            "params": [
+              { "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." },
+              { "name": "email", "value": "jane@example.com", "type": "query", "description": "Email to check." }
+            ]
+          },
+          "docs": "Checks whether a member exists by email or phone."
+        },
+        {
+          "info": { "name": "Get a member.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/customer/:customer",
+            "params": [
+              { "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." },
+              { "name": "customer", "value": "", "type": "path", "description": "Member identifier." }
+            ]
+          },
+          "docs": "Gets a single member by ID."
+        },
+        {
+          "info": { "name": "Update a member.", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/customer/:customer",
+            "params": [
+              { "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." },
+              { "name": "customer", "value": "", "type": "path", "description": "Member identifier." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Updates a member's profile."
+        },
+        {
+          "info": { "name": "Assign member to a level.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/customer/:customer/level",
+            "params": [
+              { "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." },
+              { "name": "customer", "value": "", "type": "path", "description": "Member identifier." }
+            ],
+            "body": { "type": "json", "data": "{\n  \"levelId\": \"\"\n}" }
+          },
+          "docs": "Assigns a member to a specific level (tier)."
+        },
+        {
+          "info": { "name": "Get member loyalty history.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/admin/customer/:customer/history",
+            "params": [
+              { "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." },
+              { "name": "customer", "value": "", "type": "path", "description": "Member identifier." }
+            ]
+          },
+          "docs": "Reads a member's loyalty activity history."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Transactions", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List transactions.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/transaction",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }]
+          },
+          "docs": "Lists transactions, paginated."
+        },
+        {
+          "info": { "name": "Register a transaction.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/transaction",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }],
+            "body": { "type": "json", "data": "{\n  \"transactionData\": {\n    \"documentNumber\": \"INV-001\",\n    \"documentType\": \"sell\"\n  },\n  \"customerData\": { \"email\": \"jane@example.com\" },\n  \"items\": []\n}" }
+          },
+          "docs": "Registers a purchase transaction and evaluates earning rules."
+        },
+        {
+          "info": { "name": "Simulate transaction points.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/transaction/simulate",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }],
+            "body": { "type": "json", "data": "{\n  \"transactionData\": {},\n  \"items\": []\n}" }
+          },
+          "docs": "Returns the points obtainable if the transaction were registered."
+        },
+        {
+          "info": { "name": "Get a transaction.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/transaction/:transaction",
+            "params": [
+              { "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." },
+              { "name": "transaction", "value": "", "type": "path", "description": "Transaction identifier." }
+            ]
+          },
+          "docs": "Gets a single transaction by ID."
+        },
+        {
+          "info": { "name": "Assign transaction to member.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/customer/transaction/customer/assign",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }],
+            "body": { "type": "json", "data": "{\n  \"transactionId\": \"\",\n  \"customerId\": \"\"\n}" }
+          },
+          "docs": "Assigns an unmatched transaction to a member."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Points", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List points transfers.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/points/transfer",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }]
+          },
+          "docs": "Lists points transfers, paginated."
+        },
+        {
+          "info": { "name": "Add points.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/points/transfer/add",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }],
+            "body": { "type": "json", "data": "{\n  \"customer\": \"\",\n  \"points\": 100,\n  \"comment\": \"Welcome bonus\"\n}" }
+          },
+          "docs": "Awards points to a member account."
+        },
+        {
+          "info": { "name": "Spend points.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/points/transfer/spend",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }],
+            "body": { "type": "json", "data": "{\n  \"customer\": \"\",\n  \"points\": 50\n}" }
+          },
+          "docs": "Deducts points from a member account."
+        },
+        {
+          "info": { "name": "Transfer points peer-to-peer.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/customer/points/p2p-transfer",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }],
+            "body": { "type": "json", "data": "{\n  \"receiver\": \"\",\n  \"points\": 25\n}" }
+          },
+          "docs": "Transfers points from the logged-in member to another member."
+        },
+        {
+          "info": { "name": "Cancel a points transfer.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/points/transfer/:transfer/cancel",
+            "params": [
+              { "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." },
+              { "name": "transfer", "value": "", "type": "path", "description": "Points transfer identifier." }
+            ]
+          },
+          "docs": "Cancels a specific points transfer."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Rewards", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List reward campaigns.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/campaign",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }]
+          },
+          "docs": "Lists reward campaigns, paginated."
+        },
+        {
+          "info": { "name": "Create a reward campaign.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/campaign",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }],
+            "body": { "type": "json", "data": "{\n  \"name\": \"Free coffee\",\n  \"reward\": \"discount_code\",\n  \"costInPoints\": 200,\n  \"active\": true\n}" }
+          },
+          "docs": "Creates a new reward campaign."
+        },
+        {
+          "info": { "name": "List active campaigns.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/campaign/active",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }]
+          },
+          "docs": "Lists currently active reward campaigns."
+        },
+        {
+          "info": { "name": "Get a reward campaign.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/campaign/:campaign",
+            "params": [
+              { "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." },
+              { "name": "campaign", "value": "", "type": "path", "description": "Campaign identifier." }
+            ]
+          },
+          "docs": "Gets a single reward campaign by ID."
+        },
+        {
+          "info": { "name": "Buy a reward campaign for a member.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/admin/customer/:customer/campaign/:campaign/buy",
+            "params": [
+              { "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." },
+              { "name": "customer", "value": "", "type": "path", "description": "Member identifier." },
+              { "name": "campaign", "value": "", "type": "path", "description": "Campaign identifier." }
+            ]
+          },
+          "docs": "Buys a reward campaign for a member and deducts the point cost."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Tiers", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List levels.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/level",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }]
+          },
+          "docs": "Lists loyalty levels (tiers), paginated."
+        },
+        {
+          "info": { "name": "Create a level.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/level/create",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }],
+            "body": { "type": "json", "data": "{\n  \"name\": \"Gold\",\n  \"conditionValue\": 1000,\n  \"active\": true\n}" }
+          },
+          "docs": "Creates a new loyalty level (tier)."
+        },
+        {
+          "info": { "name": "Get a level.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/level/:level",
+            "params": [
+              { "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." },
+              { "name": "level", "value": "", "type": "path", "description": "Level identifier." }
+            ]
+          },
+          "docs": "Gets a single level (tier) by ID."
+        },
+        {
+          "info": { "name": "Update a level.", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/level/:level",
+            "params": [
+              { "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." },
+              { "name": "level", "value": "", "type": "path", "description": "Level identifier." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Updates a level (tier)."
+        },
+        {
+          "info": { "name": "List members in a level.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/level/:level/customers",
+            "params": [
+              { "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." },
+              { "name": "level", "value": "", "type": "path", "description": "Level identifier." }
+            ]
+          },
+          "docs": "Lists members currently assigned to a level."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Earning Rules", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List earning rules.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/earningRule",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }]
+          },
+          "docs": "Lists earning rules, paginated."
+        },
+        {
+          "info": { "name": "Create an earning rule.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/earningRule",
+            "params": [{ "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." }],
+            "body": { "type": "json", "data": "{\n  \"name\": \"1 point per dollar\",\n  \"type\": \"points\",\n  \"pointsAmount\": 1,\n  \"active\": true\n}" }
+          },
+          "docs": "Creates a new earning rule."
+        },
+        {
+          "info": { "name": "Get an earning rule.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/earningRule/:earningRule",
+            "params": [
+              { "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." },
+              { "name": "earningRule", "value": "", "type": "path", "description": "Earning rule identifier." }
+            ]
+          },
+          "docs": "Gets a single earning rule by ID."
+        },
+        {
+          "info": { "name": "Update an earning rule.", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/earningRule/:earningRule",
+            "params": [
+              { "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." },
+              { "name": "earningRule", "value": "", "type": "path", "description": "Earning rule identifier." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Updates an earning rule."
+        },
+        {
+          "info": { "name": "Activate an earning rule.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-instance.openloyalty.io/api/:storeCode/earningRule/:earningRule/activate",
+            "params": [
+              { "name": "storeCode", "value": "DEFAULT", "type": "path", "description": "The store code." },
+              { "name": "earningRule", "value": "", "type": "path", "description": "Earning rule identifier." }
+            ]
+          },
+          "docs": "Activates or deactivates an earning rule."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

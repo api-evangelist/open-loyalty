@@ -1,0 +1,89 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Open Loyalty
+providerId: open-loyalty
+created: '2026-07-10'
+modified: '2026-07-10'
+reconciled: false
+tags:
+- Loyalty
+- Gamification
+- Rewards
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Open Loyalty spend. Open Loyalty Cloud is a managed loyalty SaaS
+  billed on Monthly Active Members - a Platform Fee plus an Allowance Fee per
+  active member - so the dominant cost driver is how many registered members
+  actually perform a loyalty event each month rather than raw API call volume.
+  The GitHub Open Source Edition carries no vendor invoice but is capped at ~200
+  members and shifts cost to your own hosting and operations. Enterprise
+  agreements cover negotiated volume, SLAs, and services.
+notes: >-
+  Cloud per-unit rates are not public; pricing is quoted per project. The main
+  optimization lever is active-member hygiene - understanding which members are
+  billable-active and structuring the program accordingly. Verify rates with
+  Open Loyalty sales during reconciliation.
+sources:
+- https://www.openloyalty.io/
+- https://www.openloyalty.io/technology/loyalty-program-api
+- https://github.com/OpenLoyalty
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Open Loyalty
+serviceCategory: Marketing and Customer Engagement
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Open Loyalty Cloud
+  ServiceCategory: Marketing and Customer Engagement
+  ProviderName: Open Loyalty
+  PublisherName: Open Loyalty
+  InvoiceIssuerName: Open Loyalty
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: monthly_active_members
+  description: Registered members performing at least one loyalty event in a calendar month; the primary billing metric.
+  unit: members
+  aggregation: sum
+  dimensions:
+  - account
+  - store
+- name: platform_fee
+  description: Recurring platform subscription fee for the managed Open Loyalty Cloud instance.
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - account
+- name: self_hosted_compute
+  description: Infrastructure cost of running the self-hosted Open Source Edition (no Open Loyalty invoice).
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - deployment
+principles:
+- name: Visibility
+  description: Track Monthly Active Members per store and understand which members cross the billable-active threshold each month.
+- name: Allocation
+  description: Use store codes to map loyalty activity and cost to brands, regions, or business units.
+- name: Optimization
+  description: Focus program mechanics on genuinely engaged members; for testing, use the self-hosted Open Source Edition rather than paid active-member allowance.
+- name: Accountability
+  description: Assign an owner for the loyalty program budget and review active-member counts against the plan allowance monthly.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

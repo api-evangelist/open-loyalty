@@ -1,0 +1,117 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Open Loyalty
+providerId: open-loyalty
+created: '2026-07-10'
+modified: '2026-07-10'
+reconciled: false
+tags:
+- Loyalty
+- Gamification
+- Rewards
+- Plans
+- Pricing
+description: >-
+  Open Loyalty has two lineages. There is a GitHub Open Source Edition of the
+  loyalty engine (Apache-2.0) that you can self-host, but it is explicitly
+  capped to roughly 200 members, offers no guaranteed performance or
+  scalability, and is positioned for testing only. Production use is the managed
+  Open Loyalty cloud SaaS, which is sold on a contact-sales basis with no public
+  price list. The commercial model is usage-based on Monthly Active Members - a
+  registered member who performs at least one loyalty event in a calendar month
+  counts as active - combining a Platform Fee with an Allowance Fee, so you pay
+  for members who are actually active. Exact rates are quoted per project after a
+  demo.
+notes: >-
+  No public numeric pricing is published for the cloud SaaS; figures below are
+  structural, not reconciled dollar amounts. Verify current tiers, Active Member
+  definitions, and rates with Open Loyalty sales during reconciliation.
+sources:
+- https://www.openloyalty.io/
+- https://www.openloyalty.io/technology/loyalty-program-api
+- https://github.com/OpenLoyalty
+- https://help.openloyalty.io/
+plans:
+- id: open-loyalty-open-source
+  name: Open Source Edition (Self-Hosted)
+  type: free
+  description: >-
+    Apache-2.0 loyalty engine available on GitHub, self-hostable. Capped at
+    roughly 200 members with no guaranteed performance or scalability;
+    positioned for testing and evaluation rather than production.
+  entries:
+  - label: Members
+    name: oss_members
+    type: usage
+    metric: members
+    limit: 200
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (self-hosted; you provide infrastructure)
+    userMultiplied: false
+  elements:
+  - name: Full REST API
+  - name: Points, Levels, Earning Rules
+  - name: Reward Campaigns
+  - name: Self-Managed Hosting
+- id: open-loyalty-cloud
+  name: Open Loyalty Cloud (SaaS)
+  type: usage
+  description: >-
+    Managed, cloud-hosted loyalty platform billed on Monthly Active Members via
+    a Platform Fee plus an Allowance Fee. Data residency available in Europe,
+    APAC, and North America on AWS. Priced per project after a demo.
+  entries:
+  - label: Platform Fee
+    name: platform_fee
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  - label: Monthly Active Members
+    name: active_members
+    type: usage
+    metric: members
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: allowance fee per active member (contact sales)
+    userMultiplied: true
+  elements:
+  - name: Managed Hosting
+  - name: Full REST API and Webhooks
+  - name: Guaranteed Performance and Scalability
+  - name: Data Residency (EU / APAC / NA)
+  - name: Support
+- id: open-loyalty-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom enterprise agreements for larger loyalty programs - negotiated
+    volume, SLAs, security review, and professional services. Contact Open
+    Loyalty.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: SLAs and Support
+  - name: Professional Services
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

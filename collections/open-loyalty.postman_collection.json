@@ -1,0 +1,379 @@
+{
+  "info": {
+    "name": "Open Loyalty REST API",
+    "description": "API-first, headless loyalty and gamification platform. A grounded subset of the Open Loyalty REST API across members (customers), transactions, points transfers, reward campaigns, levels (tiers), and earning rules. Endpoints are scoped per store via a storeCode path segment. Open Loyalty runs as per-tenant cloud SaaS, so set baseUrl to your own instance host. Authenticate with a JWT bearer token (from /admin/login_check or /{storeCode}/customer/login_check) or a permanent X-AUTH-TOKEN. Reference: https://docs.openloyalty.io/en/latest/api/",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{jwtToken}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://your-instance.openloyalty.io/api", "type": "string" },
+    { "key": "storeCode", "value": "DEFAULT", "type": "string" },
+    { "key": "jwtToken", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Authorization",
+      "item": [
+        {
+          "name": "Admin login (get JWT)",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"\"\n}" },
+            "url": { "raw": "{{baseUrl}}/admin/login_check", "host": ["{{baseUrl}}"], "path": ["admin", "login_check"] },
+            "description": "Exchanges admin credentials for a JWT bearer token."
+          }
+        },
+        {
+          "name": "Customer login (get JWT)",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"username\": \"\",\n  \"password\": \"\"\n}" },
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/customer/login_check", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "customer", "login_check"] },
+            "description": "Exchanges member credentials for a JWT bearer token."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "item": [
+        {
+          "name": "Register a member",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Doe\",\n  \"email\": \"jane@example.com\"\n}" },
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/customer/register", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "customer", "register"] },
+            "description": "Registers a new loyalty member."
+          }
+        },
+        {
+          "name": "List members",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/customer", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "customer"] },
+            "description": "Lists loyalty members, paginated."
+          }
+        },
+        {
+          "name": "Check member by email or phone",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/customer/check?email=jane@example.com", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "customer", "check"], "query": [{ "key": "email", "value": "jane@example.com" }] },
+            "description": "Checks whether a member exists by email or phone."
+          }
+        },
+        {
+          "name": "Get a member",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/customer/:customer", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "customer", ":customer"], "variable": [{ "key": "customer", "value": "" }] },
+            "description": "Gets a single member by ID."
+          }
+        },
+        {
+          "name": "Update a member",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/customer/:customer", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "customer", ":customer"], "variable": [{ "key": "customer", "value": "" }] },
+            "description": "Updates a member's profile."
+          }
+        },
+        {
+          "name": "Assign member to a level",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"levelId\": \"\"\n}" },
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/customer/:customer/level", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "customer", ":customer", "level"], "variable": [{ "key": "customer", "value": "" }] },
+            "description": "Assigns a member to a specific level (tier)."
+          }
+        },
+        {
+          "name": "Get member loyalty history",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/admin/customer/:customer/history", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "admin", "customer", ":customer", "history"], "variable": [{ "key": "customer", "value": "" }] },
+            "description": "Reads a member's loyalty activity history."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "List transactions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/transaction", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "transaction"] },
+            "description": "Lists transactions, paginated."
+          }
+        },
+        {
+          "name": "Register a transaction",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"transactionData\": {\n    \"documentNumber\": \"INV-001\",\n    \"documentType\": \"sell\",\n    \"purchaseDate\": \"2026-07-10T12:00:00Z\"\n  },\n  \"customerData\": { \"email\": \"jane@example.com\" },\n  \"items\": []\n}" },
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/transaction", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "transaction"] },
+            "description": "Registers a purchase transaction and evaluates earning rules."
+          }
+        },
+        {
+          "name": "Simulate transaction points",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"transactionData\": {},\n  \"items\": []\n}" },
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/transaction/simulate", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "transaction", "simulate"] },
+            "description": "Returns the points obtainable if the transaction were registered."
+          }
+        },
+        {
+          "name": "Get a transaction",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/transaction/:transaction", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "transaction", ":transaction"], "variable": [{ "key": "transaction", "value": "" }] },
+            "description": "Gets a single transaction by ID."
+          }
+        },
+        {
+          "name": "Assign transaction to member",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"transactionId\": \"\",\n  \"customerId\": \"\"\n}" },
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/customer/transaction/customer/assign", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "customer", "transaction", "customer", "assign"] },
+            "description": "Assigns an unmatched transaction to a member."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Points",
+      "item": [
+        {
+          "name": "List points transfers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/points/transfer", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "points", "transfer"] },
+            "description": "Lists points transfers, paginated."
+          }
+        },
+        {
+          "name": "Add points",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"customer\": \"\",\n  \"points\": 100,\n  \"comment\": \"Welcome bonus\"\n}" },
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/points/transfer/add", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "points", "transfer", "add"] },
+            "description": "Awards points to a member account."
+          }
+        },
+        {
+          "name": "Spend points",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"customer\": \"\",\n  \"points\": 50\n}" },
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/points/transfer/spend", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "points", "transfer", "spend"] },
+            "description": "Deducts points from a member account."
+          }
+        },
+        {
+          "name": "Transfer points peer-to-peer",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"receiver\": \"\",\n  \"points\": 25\n}" },
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/customer/points/p2p-transfer", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "customer", "points", "p2p-transfer"] },
+            "description": "Transfers points from the logged-in member to another member."
+          }
+        },
+        {
+          "name": "Cancel a points transfer",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/points/transfer/:transfer/cancel", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "points", "transfer", ":transfer", "cancel"], "variable": [{ "key": "transfer", "value": "" }] },
+            "description": "Cancels a specific points transfer."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Rewards",
+      "item": [
+        {
+          "name": "List reward campaigns",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/campaign", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "campaign"] },
+            "description": "Lists reward campaigns, paginated."
+          }
+        },
+        {
+          "name": "Create a reward campaign",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Free coffee\",\n  \"reward\": \"discount_code\",\n  \"costInPoints\": 200,\n  \"active\": true\n}" },
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/campaign", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "campaign"] },
+            "description": "Creates a new reward campaign."
+          }
+        },
+        {
+          "name": "List active campaigns",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/campaign/active", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "campaign", "active"] },
+            "description": "Lists currently active reward campaigns."
+          }
+        },
+        {
+          "name": "Get a reward campaign",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/campaign/:campaign", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "campaign", ":campaign"], "variable": [{ "key": "campaign", "value": "" }] },
+            "description": "Gets a single reward campaign by ID."
+          }
+        },
+        {
+          "name": "Buy a reward campaign for a member",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/admin/customer/:customer/campaign/:campaign/buy", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "admin", "customer", ":customer", "campaign", ":campaign", "buy"], "variable": [{ "key": "customer", "value": "" }, { "key": "campaign", "value": "" }] },
+            "description": "Buys a reward campaign for a member and deducts the point cost."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tiers",
+      "item": [
+        {
+          "name": "List levels",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/level", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "level"] },
+            "description": "Lists loyalty levels (tiers), paginated."
+          }
+        },
+        {
+          "name": "Create a level",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Gold\",\n  \"conditionValue\": 1000,\n  \"active\": true\n}" },
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/level/create", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "level", "create"] },
+            "description": "Creates a new loyalty level (tier)."
+          }
+        },
+        {
+          "name": "Get a level",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/level/:level", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "level", ":level"], "variable": [{ "key": "level", "value": "" }] },
+            "description": "Gets a single level (tier) by ID."
+          }
+        },
+        {
+          "name": "Update a level",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/level/:level", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "level", ":level"], "variable": [{ "key": "level", "value": "" }] },
+            "description": "Updates a level (tier)."
+          }
+        },
+        {
+          "name": "List members in a level",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/level/:level/customers", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "level", ":level", "customers"], "variable": [{ "key": "level", "value": "" }] },
+            "description": "Lists members currently assigned to a level."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Earning Rules",
+      "item": [
+        {
+          "name": "List earning rules",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/earningRule", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "earningRule"] },
+            "description": "Lists earning rules, paginated."
+          }
+        },
+        {
+          "name": "Create an earning rule",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"1 point per dollar\",\n  \"type\": \"points\",\n  \"pointsAmount\": 1,\n  \"active\": true\n}" },
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/earningRule", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "earningRule"] },
+            "description": "Creates a new earning rule."
+          }
+        },
+        {
+          "name": "Get an earning rule",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/earningRule/:earningRule", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "earningRule", ":earningRule"], "variable": [{ "key": "earningRule", "value": "" }] },
+            "description": "Gets a single earning rule by ID."
+          }
+        },
+        {
+          "name": "Update an earning rule",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/earningRule/:earningRule", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "earningRule", ":earningRule"], "variable": [{ "key": "earningRule", "value": "" }] },
+            "description": "Updates an earning rule."
+          }
+        },
+        {
+          "name": "Activate an earning rule",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/{{storeCode}}/earningRule/:earningRule/activate", "host": ["{{baseUrl}}"], "path": ["{{storeCode}}", "earningRule", ":earningRule", "activate"], "variable": [{ "key": "earningRule", "value": "" }] },
+            "description": "Activates or deactivates an earning rule."
+          }
+        }
+      ]
+    }
+  ]
+}

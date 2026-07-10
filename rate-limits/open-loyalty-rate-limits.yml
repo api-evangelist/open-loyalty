@@ -1,0 +1,56 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Open Loyalty
+providerId: open-loyalty
+created: '2026-07-10'
+modified: '2026-07-10'
+reconciled: false
+tags:
+- Loyalty
+- Gamification
+- Rate Limiting
+- Quotas
+description: >-
+  Open Loyalty does not publish fixed numeric per-endpoint rate limits for its
+  REST API. Because the platform is delivered as a per-tenant cloud SaaS, request
+  throughput is governed by the capacity provisioned for your instance and your
+  commercial plan rather than a documented public request cap. The primary
+  commercial constraint is Monthly Active Members - the billing metric - rather
+  than API calls per second. Self-hosted Open Source Edition deployments are
+  bounded by your own infrastructure and the ~200 member testing cap.
+notes: >-
+  No numeric per-account or per-endpoint request limits are documented as of the
+  review date. Clients should implement retry with exponential backoff and honor
+  Retry-After on 429 responses. Confirm any per-instance throughput guarantees in
+  your Open Loyalty SLA during reconciliation.
+sources:
+- https://docs.openloyalty.io/en/latest/api/introduction.html
+- https://help.openloyalty.io/technical-guide/api-fundamentals/overview
+- https://www.openloyalty.io/
+responseCodes:
+  throttled: 429
+limits:
+- name: REST API Requests
+  scope: instance
+  metric: requests
+  limit: not published
+  notes: No fixed numeric request-rate limit is documented; capacity is per provisioned tenant instance.
+- name: Monthly Active Members
+  scope: account
+  metric: members
+  limit: per plan
+  notes: Commercial billing/quota metric - a member performing at least one loyalty event in a month.
+- name: Open Source Edition Members
+  scope: deployment
+  metric: members
+  limit: 200
+  notes: The self-hosted Open Source Edition is capped at roughly 200 members and is for testing only.
+policies:
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+- name: Bulk Imports
+  description: Use the XML import endpoints (customers, transactions, points transfers) for large batch loads rather than tight per-record request loops.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
