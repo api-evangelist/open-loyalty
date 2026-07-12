@@ -1,0 +1,25 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/open-loyalty-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: 'JWT obtained from POST /admin/login_check (admin) or POST /{storeCode}/customer/login_check
+    (member), sent as Authorization: Bearer <token>.'
+  sources:
+  - openapi/open-loyalty-openapi.yml
+- name: permanentToken
+  type: apiKey
+  in: header
+  parameter: X-AUTH-TOKEN
+  description: Permanent API token issued to an admin account.
+  sources:
+  - openapi/open-loyalty-openapi.yml

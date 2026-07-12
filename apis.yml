@@ -169,6 +169,10 @@ apis:
     geolocation check-ins - plus manage rule images. Earning rules are the
     programmable gamification logic behind the points economy.
 common:
+- type: DomainSecurity
+  url: security/open-loyalty-domain-security.yml
+- type: Authentication
+  url: authentication/open-loyalty-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/OpenLoyalty
 - type: LinkedIn
