@@ -1,0 +1,189 @@
+openapi: 3.1.0
+info:
+  title: Open Loyalty REST Authorization Transactions API
+  version: '1.0'
+  description: API-first, headless loyalty and gamification platform. This document models a representative, grounded subset of the Open Loyalty REST API across members (customers), transactions, points transfers, reward campaigns, levels (tiers), and earning rules. Endpoints are scoped per store using a storeCode path segment. Open Loyalty is delivered as managed cloud SaaS on a per-tenant instance, so the server host below is a template - substitute your own Open Loyalty instance host. Requests and responses are JSON over HTTPS, authenticated with a JWT bearer token or a permanent API token.
+  contact:
+    name: Open Loyalty
+    url: https://www.openloyalty.io
+  license:
+    name: Open Loyalty (Open Source Edition Apache-2.0 / Enterprise SaaS)
+    url: https://github.com/OpenLoyalty
+servers:
+- url: https://{instance}.openloyalty.io/api
+  description: Per-tenant Open Loyalty instance (substitute your own host).
+  variables:
+    instance:
+      default: your-instance
+      description: Your Open Loyalty tenant subdomain.
+security:
+- bearerAuth: []
+- permanentToken: []
+tags:
+- name: Transactions
+  description: Purchase transactions and points accrual.
+paths:
+  /{storeCode}/transaction:
+    get:
+      operationId: listTransactions
+      tags:
+      - Transactions
+      summary: List transactions
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          description: A paginated list of transactions.
+    post:
+      operationId: registerTransaction
+      tags:
+      - Transactions
+      summary: Register a transaction
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+      responses:
+        '200':
+          description: Transaction registered; earning rules evaluated.
+  /{storeCode}/transaction/simulate:
+    post:
+      operationId: simulateTransaction
+      tags:
+      - Transactions
+      summary: Simulate the points a transaction would earn
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+      responses:
+        '200':
+          description: The points obtainable if this transaction were registered.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  points:
+                    type: number
+  /{storeCode}/transaction/{transaction}:
+    get:
+      operationId: getTransaction
+      tags:
+      - Transactions
+      summary: Get a transaction
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      - name: transaction
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The transaction.
+  /{storeCode}/customer/transaction/customer/assign:
+    post:
+      operationId: assignTransactionToCustomer
+      tags:
+      - Transactions
+      summary: Assign a transaction to a member
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transactionId:
+                  type: string
+                customerId:
+                  type: string
+      responses:
+        '200':
+          description: Transaction assigned.
+components:
+  parameters:
+    PerPage:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        default: 10
+    StoreCode:
+      name: storeCode
+      in: path
+      required: true
+      description: The store the request is scoped to.
+      schema:
+        type: string
+        default: DEFAULT
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        transactionData:
+          type: object
+          properties:
+            documentNumber:
+              type: string
+            documentType:
+              type: string
+            purchaseDate:
+              type: string
+              format: date-time
+        customerData:
+          type: object
+          properties:
+            email:
+              type: string
+            phone:
+              type: string
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              sku:
+                type: object
+                properties:
+                  code:
+                    type: string
+              name:
+                type: string
+              quantity:
+                type: integer
+              grossValue:
+                type: number
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT obtained from POST /admin/login_check (admin) or POST /{storeCode}/customer/login_check (member), sent as Authorization: Bearer <token>.'
+    permanentToken:
+      type: apiKey
+      in: header
+      name: X-AUTH-TOKEN
+      description: Permanent API token issued to an admin account.
+externalDocs:
+  description: Open Loyalty REST API reference
+  url: https://docs.openloyalty.io/en/latest/api/

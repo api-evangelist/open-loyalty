@@ -1,0 +1,237 @@
+openapi: 3.1.0
+info:
+  title: Open Loyalty REST Authorization Members API
+  version: '1.0'
+  description: API-first, headless loyalty and gamification platform. This document models a representative, grounded subset of the Open Loyalty REST API across members (customers), transactions, points transfers, reward campaigns, levels (tiers), and earning rules. Endpoints are scoped per store using a storeCode path segment. Open Loyalty is delivered as managed cloud SaaS on a per-tenant instance, so the server host below is a template - substitute your own Open Loyalty instance host. Requests and responses are JSON over HTTPS, authenticated with a JWT bearer token or a permanent API token.
+  contact:
+    name: Open Loyalty
+    url: https://www.openloyalty.io
+  license:
+    name: Open Loyalty (Open Source Edition Apache-2.0 / Enterprise SaaS)
+    url: https://github.com/OpenLoyalty
+servers:
+- url: https://{instance}.openloyalty.io/api
+  description: Per-tenant Open Loyalty instance (substitute your own host).
+  variables:
+    instance:
+      default: your-instance
+      description: Your Open Loyalty tenant subdomain.
+security:
+- bearerAuth: []
+- permanentToken: []
+tags:
+- name: Members
+  description: Loyalty members (customers).
+paths:
+  /{storeCode}/customer/register:
+    post:
+      operationId: registerCustomer
+      tags:
+      - Members
+      summary: Register a new member
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRegistration'
+      responses:
+        '200':
+          description: Member registered.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+  /{storeCode}/customer:
+    get:
+      operationId: listCustomers
+      tags:
+      - Members
+      summary: List members
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          description: A paginated list of members.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Customer'
+                  total:
+                    type: integer
+  /{storeCode}/customer/check:
+    get:
+      operationId: checkCustomer
+      tags:
+      - Members
+      summary: Check whether a member exists by email or phone
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      - name: email
+        in: query
+        schema:
+          type: string
+      - name: phone
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Existence result.
+  /{storeCode}/customer/{customer}:
+    get:
+      operationId: getCustomer
+      tags:
+      - Members
+      summary: Get a member
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      - $ref: '#/components/parameters/CustomerId'
+      responses:
+        '200':
+          description: The member.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+    put:
+      operationId: updateCustomer
+      tags:
+      - Members
+      summary: Update a member
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      - $ref: '#/components/parameters/CustomerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRegistration'
+      responses:
+        '200':
+          description: Member updated.
+  /{storeCode}/customer/{customer}/level:
+    post:
+      operationId: assignCustomerLevel
+      tags:
+      - Members
+      summary: Assign a member to a level
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      - $ref: '#/components/parameters/CustomerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                levelId:
+                  type: string
+      responses:
+        '200':
+          description: Member assigned to level.
+  /{storeCode}/admin/customer/{customer}/history:
+    get:
+      operationId: getCustomerHistory
+      tags:
+      - Members
+      summary: Get a member's loyalty history
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      - $ref: '#/components/parameters/CustomerId'
+      responses:
+        '200':
+          description: The member's loyalty activity history.
+components:
+  parameters:
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+    PerPage:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        default: 10
+    CustomerId:
+      name: customer
+      in: path
+      required: true
+      description: Member (customer) identifier.
+      schema:
+        type: string
+    StoreCode:
+      name: storeCode
+      in: path
+      required: true
+      description: The store the request is scoped to.
+      schema:
+        type: string
+        default: DEFAULT
+  schemas:
+    Customer:
+      type: object
+      properties:
+        customerId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        levelId:
+          type: string
+        loyaltyCardNumber:
+          type: string
+        active:
+          type: boolean
+    CustomerRegistration:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        birthDate:
+          type: string
+          format: date
+        agreement1:
+          type: boolean
+      required:
+      - firstName
+      - lastName
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT obtained from POST /admin/login_check (admin) or POST /{storeCode}/customer/login_check (member), sent as Authorization: Bearer <token>.'
+    permanentToken:
+      type: apiKey
+      in: header
+      name: X-AUTH-TOKEN
+      description: Permanent API token issued to an admin account.
+externalDocs:
+  description: Open Loyalty REST API reference
+  url: https://docs.openloyalty.io/en/latest/api/

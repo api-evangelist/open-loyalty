@@ -1,0 +1,169 @@
+openapi: 3.1.0
+info:
+  title: Open Loyalty REST Authorization Tiers API
+  version: '1.0'
+  description: API-first, headless loyalty and gamification platform. This document models a representative, grounded subset of the Open Loyalty REST API across members (customers), transactions, points transfers, reward campaigns, levels (tiers), and earning rules. Endpoints are scoped per store using a storeCode path segment. Open Loyalty is delivered as managed cloud SaaS on a per-tenant instance, so the server host below is a template - substitute your own Open Loyalty instance host. Requests and responses are JSON over HTTPS, authenticated with a JWT bearer token or a permanent API token.
+  contact:
+    name: Open Loyalty
+    url: https://www.openloyalty.io
+  license:
+    name: Open Loyalty (Open Source Edition Apache-2.0 / Enterprise SaaS)
+    url: https://github.com/OpenLoyalty
+servers:
+- url: https://{instance}.openloyalty.io/api
+  description: Per-tenant Open Loyalty instance (substitute your own host).
+  variables:
+    instance:
+      default: your-instance
+      description: Your Open Loyalty tenant subdomain.
+security:
+- bearerAuth: []
+- permanentToken: []
+tags:
+- name: Tiers
+  description: Levels (loyalty tiers).
+paths:
+  /{storeCode}/level:
+    get:
+      operationId: listLevels
+      tags:
+      - Tiers
+      summary: List levels (tiers)
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      responses:
+        '200':
+          description: A paginated list of levels.
+  /{storeCode}/level/create:
+    post:
+      operationId: createLevel
+      tags:
+      - Tiers
+      summary: Create a level (tier)
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Level'
+      responses:
+        '200':
+          description: Level created.
+  /{storeCode}/level/{level}:
+    get:
+      operationId: getLevel
+      tags:
+      - Tiers
+      summary: Get a level (tier)
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      - $ref: '#/components/parameters/LevelId'
+      responses:
+        '200':
+          description: The level.
+    put:
+      operationId: updateLevel
+      tags:
+      - Tiers
+      summary: Update a level (tier)
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      - $ref: '#/components/parameters/LevelId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Level'
+      responses:
+        '200':
+          description: Level updated.
+    delete:
+      operationId: deleteLevel
+      tags:
+      - Tiers
+      summary: Delete a level (tier)
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      - $ref: '#/components/parameters/LevelId'
+      responses:
+        '204':
+          description: Level deleted.
+  /{storeCode}/level/{level}/customers:
+    get:
+      operationId: listLevelCustomers
+      tags:
+      - Tiers
+      summary: List members assigned to a level
+      parameters:
+      - $ref: '#/components/parameters/StoreCode'
+      - $ref: '#/components/parameters/LevelId'
+      responses:
+        '200':
+          description: Members currently in this level.
+components:
+  parameters:
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+    PerPage:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        default: 10
+    LevelId:
+      name: level
+      in: path
+      required: true
+      description: Level (tier) identifier.
+      schema:
+        type: string
+    StoreCode:
+      name: storeCode
+      in: path
+      required: true
+      description: The store the request is scoped to.
+      schema:
+        type: string
+        default: DEFAULT
+  schemas:
+    Level:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        conditionValue:
+          type: number
+        active:
+          type: boolean
+        reward:
+          type: object
+          properties:
+            name:
+              type: string
+            value:
+              type: number
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT obtained from POST /admin/login_check (admin) or POST /{storeCode}/customer/login_check (member), sent as Authorization: Bearer <token>.'
+    permanentToken:
+      type: apiKey
+      in: header
+      name: X-AUTH-TOKEN
+      description: Permanent API token issued to an admin account.
+externalDocs:
+  description: Open Loyalty REST API reference
+  url: https://docs.openloyalty.io/en/latest/api/
