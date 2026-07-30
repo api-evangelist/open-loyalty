@@ -13,7 +13,20 @@ description: >-
   JWT bearer token (per-store and admin login) or a permanent API token. The API
   is scoped per store using a storeCode path segment, and change events are
   delivered to consumers via outbound HTTP webhook callbacks.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/open-loyalty.png
 tags:
 - Loyalty
 - Gamification
@@ -27,147 +40,202 @@ created: '2026-07-10'
 modified: '2026-07-10'
 specificationVersion: '0.19'
 apis:
-- aid: open-loyalty:open-loyalty-customer-api
-  name: Open Loyalty Customer API
-  tags:
-  - Members
-  - Customers
-  - Profiles
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: open-loyalty:open-loyalty-authorization-api
+  name: Open Loyalty Authorization API
+  description: Authentication and token issuance.
   humanURL: https://docs.openloyalty.io/en/latest/api/customer.html
   baseURL: https://your-instance.openloyalty.io/api
-  properties:
-  - url: https://docs.openloyalty.io/en/latest/api/customer.html
-    type: APIReference
-  - url: https://docs.openloyalty.io/en/latest/api/introduction.html
-    type: Documentation
-  - url: openapi/open-loyalty-openapi.yml
-    type: OpenAPI
-  - url: collections/open-loyalty.postman_collection.json
-    type: PostmanCollection
-  - url: collections/open-loyalty.opencollection.json
-    type: OpenCollection
-  description: >-
-    Register, list, read, and update loyalty members (customers), check
-    existence by email or phone, manage activation and status, assign members to
-    levels and POS, and read per-member history. Members are the core loyalty
-    account that points, transactions, and campaigns attach to.
-- aid: open-loyalty:open-loyalty-transactions-api
-  name: Open Loyalty Transactions API
   tags:
-  - Transactions
-  - Purchases
-  - Points Accrual
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.openloyalty.io/en/latest/api/transactions.html
-  baseURL: https://your-instance.openloyalty.io/api
+  - Authorization
   properties:
-  - url: https://docs.openloyalty.io/en/latest/api/transactions.html
-    type: APIReference
-  - url: openapi/open-loyalty-openapi.yml
-    type: OpenAPI
-  - url: collections/open-loyalty.postman_collection.json
-    type: PostmanCollection
-  - url: collections/open-loyalty.opencollection.json
-    type: OpenCollection
-  description: >-
-    Register purchase transactions, simulate the points a transaction would earn
-    before committing it, list and read transactions, assign transactions to
-    members, import transactions in bulk, and manage transaction item labels.
-    Transactions drive earning-rule evaluation and points accrual.
-- aid: open-loyalty:open-loyalty-points-transfers-api
-  name: Open Loyalty Points Transfers API
-  tags:
-  - Points
-  - Balances
-  - Redemption
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.openloyalty.io/en/latest/api/points_transfers.html
-  baseURL: https://your-instance.openloyalty.io/api
-  properties:
-  - url: https://docs.openloyalty.io/en/latest/api/points_transfers.html
-    type: APIReference
-  - url: openapi/open-loyalty-openapi.yml
-    type: OpenAPI
-  - url: collections/open-loyalty.postman_collection.json
-    type: PostmanCollection
-  - url: collections/open-loyalty.opencollection.json
-    type: OpenCollection
-  description: >-
-    Award (add) and spend points on a member account, transfer points
-    peer-to-peer between members, and cancel, activate, expire, or block a
-    points transfer. List points transfers and read transfer histograms. This is
-    the ledger surface for the loyalty points economy.
-- aid: open-loyalty:open-loyalty-reward-campaigns-api
-  name: Open Loyalty Reward Campaigns API
-  tags:
-  - Rewards
-  - Campaigns
-  - Coupons
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.openloyalty.io/en/latest/api/campaign.html
-  baseURL: https://your-instance.openloyalty.io/api
-  properties:
-  - url: https://docs.openloyalty.io/en/latest/api/campaign.html
-    type: APIReference
-  - url: openapi/open-loyalty-openapi.yml
-    type: OpenAPI
-  - url: collections/open-loyalty.postman_collection.json
-    type: PostmanCollection
-  - url: collections/open-loyalty.opencollection.json
-    type: OpenCollection
-  description: >-
-    Create and manage reward campaigns (the redeemable rewards catalog), toggle
-    campaigns active, list active and publicly available campaigns, buy a reward
-    campaign for a member, redeem and simulate cashback, list bought campaigns,
-    and manage coupons and campaign media. This is where members spend points on
-    rewards.
-- aid: open-loyalty:open-loyalty-levels-api
-  name: Open Loyalty Levels API
-  tags:
-  - Tiers
-  - Levels
-  - Segmentation
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.openloyalty.io/en/latest/api/level.html
-  baseURL: https://your-instance.openloyalty.io/api
-  properties:
-  - url: https://docs.openloyalty.io/en/latest/api/level.html
-    type: APIReference
-  - url: openapi/open-loyalty-openapi.yml
-    type: OpenAPI
-  - url: collections/open-loyalty.postman_collection.json
-    type: PostmanCollection
-  - url: collections/open-loyalty.opencollection.json
-    type: OpenCollection
-  description: >-
-    Create, list, read, update, activate, and delete loyalty tiers (levels),
-    list the members assigned to a level, and manage level images. Levels model
-    the tiered structure - bronze, silver, gold and beyond - that members climb
-    based on their loyalty activity.
+  - type: OpenAPI
+    url: openapi/open-loyalty-authorization-api-openapi.yml
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/customer.html
+  - type: Documentation
+    url: https://docs.openloyalty.io/en/latest/api/introduction.html
+  - type: PostmanCollection
+    url: collections/open-loyalty.postman_collection.json
+  - type: OpenCollection
+    url: collections/open-loyalty.opencollection.json
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/transactions.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/points_transfers.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/campaign.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/level.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/earning_rule.html
 - aid: open-loyalty:open-loyalty-earning-rules-api
   name: Open Loyalty Earning Rules API
+  description: Rules that define how members earn points.
+  humanURL: https://docs.openloyalty.io/en/latest/api/customer.html
+  baseURL: https://your-instance.openloyalty.io/api
   tags:
   - Earning Rules
-  - Points Logic
-  - Gamification
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.openloyalty.io/en/latest/api/earning_rule.html
-  baseURL: https://your-instance.openloyalty.io/api
   properties:
-  - url: https://docs.openloyalty.io/en/latest/api/earning_rule.html
-    type: APIReference
-  - url: openapi/open-loyalty-openapi.yml
-    type: OpenAPI
-  - url: collections/open-loyalty.postman_collection.json
-    type: PostmanCollection
-  - url: collections/open-loyalty.opencollection.json
-    type: OpenCollection
-  description: >-
-    Create, list, read, update, and activate the earning rules that define how
-    members earn points - purchase-based, event-based, QR code scans, and
-    geolocation check-ins - plus manage rule images. Earning rules are the
-    programmable gamification logic behind the points economy.
+  - type: OpenAPI
+    url: openapi/open-loyalty-earning-rules-api-openapi.yml
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/customer.html
+  - type: Documentation
+    url: https://docs.openloyalty.io/en/latest/api/introduction.html
+  - type: PostmanCollection
+    url: collections/open-loyalty.postman_collection.json
+  - type: OpenCollection
+    url: collections/open-loyalty.opencollection.json
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/transactions.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/points_transfers.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/campaign.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/level.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/earning_rule.html
+- aid: open-loyalty:open-loyalty-members-api
+  name: Open Loyalty Members API
+  description: Loyalty members (customers).
+  humanURL: https://docs.openloyalty.io/en/latest/api/customer.html
+  baseURL: https://your-instance.openloyalty.io/api
+  tags:
+  - Members
+  properties:
+  - type: OpenAPI
+    url: openapi/open-loyalty-members-api-openapi.yml
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/customer.html
+  - type: Documentation
+    url: https://docs.openloyalty.io/en/latest/api/introduction.html
+  - type: PostmanCollection
+    url: collections/open-loyalty.postman_collection.json
+  - type: OpenCollection
+    url: collections/open-loyalty.opencollection.json
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/transactions.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/points_transfers.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/campaign.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/level.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/earning_rule.html
+- aid: open-loyalty:open-loyalty-points-api
+  name: Open Loyalty Points API
+  description: Points transfers - the loyalty points ledger.
+  humanURL: https://docs.openloyalty.io/en/latest/api/customer.html
+  baseURL: https://your-instance.openloyalty.io/api
+  tags:
+  - Points
+  properties:
+  - type: OpenAPI
+    url: openapi/open-loyalty-points-api-openapi.yml
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/customer.html
+  - type: Documentation
+    url: https://docs.openloyalty.io/en/latest/api/introduction.html
+  - type: PostmanCollection
+    url: collections/open-loyalty.postman_collection.json
+  - type: OpenCollection
+    url: collections/open-loyalty.opencollection.json
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/transactions.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/points_transfers.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/campaign.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/level.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/earning_rule.html
+- aid: open-loyalty:open-loyalty-rewards-api
+  name: Open Loyalty Rewards API
+  description: Reward campaigns, coupons, and redemption.
+  humanURL: https://docs.openloyalty.io/en/latest/api/customer.html
+  baseURL: https://your-instance.openloyalty.io/api
+  tags:
+  - Rewards
+  properties:
+  - type: OpenAPI
+    url: openapi/open-loyalty-rewards-api-openapi.yml
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/customer.html
+  - type: Documentation
+    url: https://docs.openloyalty.io/en/latest/api/introduction.html
+  - type: PostmanCollection
+    url: collections/open-loyalty.postman_collection.json
+  - type: OpenCollection
+    url: collections/open-loyalty.opencollection.json
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/transactions.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/points_transfers.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/campaign.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/level.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/earning_rule.html
+- aid: open-loyalty:open-loyalty-tiers-api
+  name: Open Loyalty Tiers API
+  description: Levels (loyalty tiers).
+  humanURL: https://docs.openloyalty.io/en/latest/api/customer.html
+  baseURL: https://your-instance.openloyalty.io/api
+  tags:
+  - Tiers
+  properties:
+  - type: OpenAPI
+    url: openapi/open-loyalty-tiers-api-openapi.yml
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/customer.html
+  - type: Documentation
+    url: https://docs.openloyalty.io/en/latest/api/introduction.html
+  - type: PostmanCollection
+    url: collections/open-loyalty.postman_collection.json
+  - type: OpenCollection
+    url: collections/open-loyalty.opencollection.json
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/transactions.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/points_transfers.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/campaign.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/level.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/earning_rule.html
+- aid: open-loyalty:open-loyalty-transactions-api
+  name: Open Loyalty Transactions API
+  description: Purchase transactions and points accrual.
+  humanURL: https://docs.openloyalty.io/en/latest/api/customer.html
+  baseURL: https://your-instance.openloyalty.io/api
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/open-loyalty-transactions-api-openapi.yml
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/customer.html
+  - type: Documentation
+    url: https://docs.openloyalty.io/en/latest/api/introduction.html
+  - type: PostmanCollection
+    url: collections/open-loyalty.postman_collection.json
+  - type: OpenCollection
+    url: collections/open-loyalty.opencollection.json
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/transactions.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/points_transfers.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/campaign.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/level.html
+  - type: APIReference
+    url: https://docs.openloyalty.io/en/latest/api/earning_rule.html
 common:
 - type: AgenticAccess
   url: agentic-access/open-loyalty-agentic-access.yml
