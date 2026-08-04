@@ -1,0 +1,26 @@
+{
+  "provider": "open-loyalty",
+  "sources": [
+    "open-loyalty-authorization-api-openapi.yml",
+    "open-loyalty-earning-rules-api-openapi.yml",
+    "open-loyalty-members-api-openapi.yml",
+    "open-loyalty-points-api-openapi.yml",
+    "open-loyalty-rewards-api-openapi.yml",
+    "open-loyalty-tiers-api-openapi.yml",
+    "open-loyalty-transactions-api-openapi.yml"
+  ],
+  "outputs": [
+    "open-loyalty-authorization-api-openapi.yml",
+    "open-loyalty-earning-rules-api-openapi.yml",
+    "open-loyalty-members-api-openapi.yml",
+    "open-loyalty-points-api-openapi.yml",
+    "open-loyalty-rewards-api-openapi.yml",
+    "open-loyalty-tiers-api-openapi.yml",
+    "open-loyalty-transactions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
