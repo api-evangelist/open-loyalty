@@ -1,0 +1,180 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Open Loyalty REST Authorization Rewards API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rewards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List reward campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/campaign",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List reward campaigns"
+        },
+        {
+          "info": {
+            "name": "Create a reward campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/campaign",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a reward campaign"
+        },
+        {
+          "info": {
+            "name": "List active reward campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/campaign/active",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              }
+            ]
+          },
+          "docs": "List active reward campaigns"
+        },
+        {
+          "info": {
+            "name": "Get a reward campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/campaign/:campaign",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "campaign",
+                "value": "",
+                "type": "path",
+                "description": "Reward campaign identifier."
+              }
+            ]
+          },
+          "docs": "Get a reward campaign"
+        },
+        {
+          "info": {
+            "name": "Update a reward campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/campaign/:campaign",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "campaign",
+                "value": "",
+                "type": "path",
+                "description": "Reward campaign identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a reward campaign"
+        },
+        {
+          "info": {
+            "name": "Buy a reward campaign for a member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/admin/customer/:customer/campaign/:campaign/buy",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "customer",
+                "value": "",
+                "type": "path",
+                "description": "Member (customer) identifier."
+              },
+              {
+                "name": "campaign",
+                "value": "",
+                "type": "path",
+                "description": "Reward campaign identifier."
+              }
+            ]
+          },
+          "docs": "Buy a reward campaign for a member"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

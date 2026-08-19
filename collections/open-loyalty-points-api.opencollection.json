@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Open Loyalty REST Authorization Points API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Points",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List points transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/points/transfer",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List points transfers"
+        },
+        {
+          "info": {
+            "name": "Add (award) points to a member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/points/transfer/add",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add (award) points to a member"
+        },
+        {
+          "info": {
+            "name": "Spend (deduct) points from a member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/points/transfer/spend",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Spend (deduct) points from a member"
+        },
+        {
+          "info": {
+            "name": "Transfer points peer-to-peer between members",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/customer/points/p2p-transfer",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Transfer points peer-to-peer between members"
+        },
+        {
+          "info": {
+            "name": "Cancel a points transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/points/transfer/:transfer/cancel",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "transfer",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a points transfer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

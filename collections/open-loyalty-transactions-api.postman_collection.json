@@ -1,0 +1,646 @@
+{
+  "item": [
+    {
+      "id": "7d80e33c-467e-409b-912e-de8a7aeb7789",
+      "name": "Transactions",
+      "description": {
+        "content": "Purchase transactions and points accrual.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aa8db4a2-a558-43ae-a31c-5fa8c39429ff",
+          "name": "List transactions",
+          "request": {
+            "name": "List transactions",
+            "description": {},
+            "url": {
+              "path": [
+                ":storeCode",
+                "transaction"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "10"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "DEFAULT",
+                  "key": "storeCode",
+                  "description": "(Required) The store the request is scoped to."
+                },
+                {
+                  "description": "Your Open Loyalty tenant subdomain.",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37e2c68d-c5dc-47c0-a5a5-96eccc4044be",
+              "name": "A paginated list of transactions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":storeCode",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "DEFAULT",
+                      "key": "storeCode",
+                      "description": "(Required) The store the request is scoped to."
+                    },
+                    {
+                      "description": "Your Open Loyalty tenant subdomain.",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "741c619f-34a2-42f6-98b1-804e6f99f772",
+          "name": "Register a transaction",
+          "request": {
+            "name": "Register a transaction",
+            "description": {},
+            "url": {
+              "path": [
+                ":storeCode",
+                "transaction"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "DEFAULT",
+                  "key": "storeCode",
+                  "description": "(Required) The store the request is scoped to."
+                },
+                {
+                  "description": "Your Open Loyalty tenant subdomain.",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionData\": {\n    \"documentNumber\": \"<string>\",\n    \"documentType\": \"<string>\",\n    \"purchaseDate\": \"<dateTime>\"\n  },\n  \"customerData\": {\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"items\": [\n    {\n      \"sku\": {\n        \"code\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"grossValue\": \"<number>\"\n    },\n    {\n      \"sku\": {\n        \"code\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"grossValue\": \"<number>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7b20c5ab-e000-45b3-af6c-45a04fcc4263",
+              "name": "Transaction registered; earning rules evaluated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":storeCode",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "DEFAULT",
+                      "key": "storeCode",
+                      "description": "(Required) The store the request is scoped to."
+                    },
+                    {
+                      "description": "Your Open Loyalty tenant subdomain.",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionData\": {\n    \"documentNumber\": \"<string>\",\n    \"documentType\": \"<string>\",\n    \"purchaseDate\": \"<dateTime>\"\n  },\n  \"customerData\": {\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"items\": [\n    {\n      \"sku\": {\n        \"code\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"grossValue\": \"<number>\"\n    },\n    {\n      \"sku\": {\n        \"code\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"grossValue\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9d68be9-16bd-4430-b1c5-9f8ccd87e41c",
+          "name": "Simulate the points a transaction would earn",
+          "request": {
+            "name": "Simulate the points a transaction would earn",
+            "description": {},
+            "url": {
+              "path": [
+                ":storeCode",
+                "transaction",
+                "simulate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "DEFAULT",
+                  "key": "storeCode",
+                  "description": "(Required) The store the request is scoped to."
+                },
+                {
+                  "description": "Your Open Loyalty tenant subdomain.",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionData\": {\n    \"documentNumber\": \"<string>\",\n    \"documentType\": \"<string>\",\n    \"purchaseDate\": \"<dateTime>\"\n  },\n  \"customerData\": {\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"items\": [\n    {\n      \"sku\": {\n        \"code\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"grossValue\": \"<number>\"\n    },\n    {\n      \"sku\": {\n        \"code\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"grossValue\": \"<number>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7a6bde3d-ef5d-41bb-9ba7-1fc9d91d1a09",
+              "name": "The points obtainable if this transaction were registered.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":storeCode",
+                    "transaction",
+                    "simulate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "DEFAULT",
+                      "key": "storeCode",
+                      "description": "(Required) The store the request is scoped to."
+                    },
+                    {
+                      "description": "Your Open Loyalty tenant subdomain.",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionData\": {\n    \"documentNumber\": \"<string>\",\n    \"documentType\": \"<string>\",\n    \"purchaseDate\": \"<dateTime>\"\n  },\n  \"customerData\": {\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"items\": [\n    {\n      \"sku\": {\n        \"code\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"grossValue\": \"<number>\"\n    },\n    {\n      \"sku\": {\n        \"code\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"grossValue\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"points\": 6009.772326017186\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67ed2692-2aad-459d-8e1c-8379e5faf6e6",
+          "name": "Get a transaction",
+          "request": {
+            "name": "Get a transaction",
+            "description": {},
+            "url": {
+              "path": [
+                ":storeCode",
+                "transaction",
+                ":transaction"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "DEFAULT",
+                  "key": "storeCode",
+                  "description": "(Required) The store the request is scoped to."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transaction",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Open Loyalty tenant subdomain.",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a92ec043-8d52-4262-99bf-d191e3c3209c",
+              "name": "The transaction.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":storeCode",
+                    "transaction",
+                    ":transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "DEFAULT",
+                      "key": "storeCode",
+                      "description": "(Required) The store the request is scoped to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transaction",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Open Loyalty tenant subdomain.",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c054bd3-f7e0-4923-8791-fb1b8105a0f6",
+          "name": "Assign a transaction to a member",
+          "request": {
+            "name": "Assign a transaction to a member",
+            "description": {},
+            "url": {
+              "path": [
+                ":storeCode",
+                "customer",
+                "transaction",
+                "customer",
+                "assign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "DEFAULT",
+                  "key": "storeCode",
+                  "description": "(Required) The store the request is scoped to."
+                },
+                {
+                  "description": "Your Open Loyalty tenant subdomain.",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionId\": \"<string>\",\n  \"customerId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9bb71321-845c-4608-bea9-6e843fb1b030",
+              "name": "Transaction assigned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":storeCode",
+                    "customer",
+                    "transaction",
+                    "customer",
+                    "assign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "DEFAULT",
+                      "key": "storeCode",
+                      "description": "(Required) The store the request is scoped to."
+                    },
+                    {
+                      "description": "Your Open Loyalty tenant subdomain.",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionId\": \"<string>\",\n  \"customerId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Open Loyalty tenant subdomain.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-instance",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}.openloyalty.io/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "857024fb-e68d-43c2-8bba-b30ce0fe8082",
+    "name": "Open Loyalty REST Authorization Transactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API-first, headless loyalty and gamification platform. This document models a representative, grounded subset of the Open Loyalty REST API across members (customers), transactions, points transfers, reward campaigns, levels (tiers), and earning rules. Endpoints are scoped per store using a storeCode path segment. Open Loyalty is delivered as managed cloud SaaS on a per-tenant instance, so the server host below is a template - substitute your own Open Loyalty instance host. Requests and responses are JSON over HTTPS, authenticated with a JWT bearer token or a permanent API token.\n\nContact Support:\n Name: Open Loyalty",
+      "type": "text/plain"
+    }
+  }
+}

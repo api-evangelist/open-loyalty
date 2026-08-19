@@ -1,0 +1,213 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Open Loyalty REST Authorization Members API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Members",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register a new member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/customer/register",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new member"
+        },
+        {
+          "info": {
+            "name": "List members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/customer",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List members"
+        },
+        {
+          "info": {
+            "name": "Check whether a member exists by email or phone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/customer/check",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "phone",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Check whether a member exists by email or phone"
+        },
+        {
+          "info": {
+            "name": "Get a member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/customer/:customer",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "customer",
+                "value": "",
+                "type": "path",
+                "description": "Member (customer) identifier."
+              }
+            ]
+          },
+          "docs": "Get a member"
+        },
+        {
+          "info": {
+            "name": "Update a member",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/customer/:customer",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "customer",
+                "value": "",
+                "type": "path",
+                "description": "Member (customer) identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a member"
+        },
+        {
+          "info": {
+            "name": "Assign a member to a level",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/customer/:customer/level",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "customer",
+                "value": "",
+                "type": "path",
+                "description": "Member (customer) identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign a member to a level"
+        },
+        {
+          "info": {
+            "name": "Get a member's loyalty history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/admin/customer/:customer/history",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "customer",
+                "value": "",
+                "type": "path",
+                "description": "Member (customer) identifier."
+              }
+            ]
+          },
+          "docs": "Get a member's loyalty history"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

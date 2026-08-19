@@ -1,0 +1,180 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Open Loyalty REST Authorization Tiers API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tiers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List levels (tiers)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/level",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List levels (tiers)"
+        },
+        {
+          "info": {
+            "name": "Create a level (tier)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/level/create",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a level (tier)"
+        },
+        {
+          "info": {
+            "name": "Get a level (tier)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/level/:level",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "path",
+                "description": "Level (tier) identifier."
+              }
+            ]
+          },
+          "docs": "Get a level (tier)"
+        },
+        {
+          "info": {
+            "name": "Update a level (tier)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/level/:level",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "path",
+                "description": "Level (tier) identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a level (tier)"
+        },
+        {
+          "info": {
+            "name": "Delete a level (tier)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/level/:level",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "path",
+                "description": "Level (tier) identifier."
+              }
+            ]
+          },
+          "docs": "Delete a level (tier)"
+        },
+        {
+          "info": {
+            "name": "List members assigned to a level",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/level/:level/customers",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "path",
+                "description": "Level (tier) identifier."
+              }
+            ]
+          },
+          "docs": "List members assigned to a level"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

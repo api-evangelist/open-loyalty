@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Open Loyalty REST Authorization Earning Rules API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Earning Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List earning rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/earningRule",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List earning rules"
+        },
+        {
+          "info": {
+            "name": "Create an earning rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/earningRule",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an earning rule"
+        },
+        {
+          "info": {
+            "name": "Get an earning rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/earningRule/:earningRule",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "earningRule",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an earning rule"
+        },
+        {
+          "info": {
+            "name": "Update an earning rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/earningRule/:earningRule",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "earningRule",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an earning rule"
+        },
+        {
+          "info": {
+            "name": "Activate or deactivate an earning rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.openloyalty.io/api/:storeCode/earningRule/:earningRule/activate",
+            "params": [
+              {
+                "name": "storeCode",
+                "value": "",
+                "type": "path",
+                "description": "The store the request is scoped to."
+              },
+              {
+                "name": "earningRule",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Activate or deactivate an earning rule"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

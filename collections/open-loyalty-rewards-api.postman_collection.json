@@ -1,0 +1,758 @@
+{
+  "item": [
+    {
+      "id": "1bb3120a-c092-471d-ab80-33fe90a185d1",
+      "name": "Rewards",
+      "description": {
+        "content": "Reward campaigns, coupons, and redemption.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ca4de5fa-c92c-459e-b39e-ac555153dc1d",
+          "name": "List reward campaigns",
+          "request": {
+            "name": "List reward campaigns",
+            "description": {},
+            "url": {
+              "path": [
+                ":storeCode",
+                "campaign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "10"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "DEFAULT",
+                  "key": "storeCode",
+                  "description": "(Required) The store the request is scoped to."
+                },
+                {
+                  "description": "Your Open Loyalty tenant subdomain.",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45d92cb5-776e-446f-90dc-931640377bed",
+              "name": "A paginated list of reward campaigns.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":storeCode",
+                    "campaign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "DEFAULT",
+                      "key": "storeCode",
+                      "description": "(Required) The store the request is scoped to."
+                    },
+                    {
+                      "description": "Your Open Loyalty tenant subdomain.",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76dd4c1d-7dce-42d6-be39-e58e2a0375ee",
+          "name": "Create a reward campaign",
+          "request": {
+            "name": "Create a reward campaign",
+            "description": {},
+            "url": {
+              "path": [
+                ":storeCode",
+                "campaign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "DEFAULT",
+                  "key": "storeCode",
+                  "description": "(Required) The store the request is scoped to."
+                },
+                {
+                  "description": "Your Open Loyalty tenant subdomain.",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"reward\": \"<string>\",\n  \"costInPoints\": \"<integer>\",\n  \"active\": \"<boolean>\",\n  \"levels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "01432956-cde5-420a-83ef-ca13bb395459",
+              "name": "Reward campaign created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":storeCode",
+                    "campaign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "DEFAULT",
+                      "key": "storeCode",
+                      "description": "(Required) The store the request is scoped to."
+                    },
+                    {
+                      "description": "Your Open Loyalty tenant subdomain.",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"reward\": \"<string>\",\n  \"costInPoints\": \"<integer>\",\n  \"active\": \"<boolean>\",\n  \"levels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5458a38-fc0c-4fbf-bf93-98cf8790e9bf",
+          "name": "List active reward campaigns",
+          "request": {
+            "name": "List active reward campaigns",
+            "description": {},
+            "url": {
+              "path": [
+                ":storeCode",
+                "campaign",
+                "active"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "DEFAULT",
+                  "key": "storeCode",
+                  "description": "(Required) The store the request is scoped to."
+                },
+                {
+                  "description": "Your Open Loyalty tenant subdomain.",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94f34d5e-0657-4664-bc63-3baf1f19d8ae",
+              "name": "A collection of active reward campaigns.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":storeCode",
+                    "campaign",
+                    "active"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "DEFAULT",
+                      "key": "storeCode",
+                      "description": "(Required) The store the request is scoped to."
+                    },
+                    {
+                      "description": "Your Open Loyalty tenant subdomain.",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73f4713b-ac66-45cb-84fb-3569d8ee2ffa",
+          "name": "Get a reward campaign",
+          "request": {
+            "name": "Get a reward campaign",
+            "description": {},
+            "url": {
+              "path": [
+                ":storeCode",
+                "campaign",
+                ":campaign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "DEFAULT",
+                  "key": "storeCode",
+                  "description": "(Required) The store the request is scoped to."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaign",
+                  "description": "(Required) Reward campaign identifier."
+                },
+                {
+                  "description": "Your Open Loyalty tenant subdomain.",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "831cbb57-bb2b-4245-864f-d8ce638ade14",
+              "name": "The reward campaign.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":storeCode",
+                    "campaign",
+                    ":campaign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "DEFAULT",
+                      "key": "storeCode",
+                      "description": "(Required) The store the request is scoped to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign",
+                      "description": "(Required) Reward campaign identifier."
+                    },
+                    {
+                      "description": "Your Open Loyalty tenant subdomain.",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce09c7e2-c208-4753-891a-cc78633e9658",
+          "name": "Update a reward campaign",
+          "request": {
+            "name": "Update a reward campaign",
+            "description": {},
+            "url": {
+              "path": [
+                ":storeCode",
+                "campaign",
+                ":campaign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "DEFAULT",
+                  "key": "storeCode",
+                  "description": "(Required) The store the request is scoped to."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaign",
+                  "description": "(Required) Reward campaign identifier."
+                },
+                {
+                  "description": "Your Open Loyalty tenant subdomain.",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"reward\": \"<string>\",\n  \"costInPoints\": \"<integer>\",\n  \"active\": \"<boolean>\",\n  \"levels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "21c16f8c-9d10-4208-aeb6-0d75593656d8",
+              "name": "Reward campaign updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":storeCode",
+                    "campaign",
+                    ":campaign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "DEFAULT",
+                      "key": "storeCode",
+                      "description": "(Required) The store the request is scoped to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign",
+                      "description": "(Required) Reward campaign identifier."
+                    },
+                    {
+                      "description": "Your Open Loyalty tenant subdomain.",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"reward\": \"<string>\",\n  \"costInPoints\": \"<integer>\",\n  \"active\": \"<boolean>\",\n  \"levels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2629eed8-1c52-41ed-9053-230238d87a63",
+          "name": "Buy a reward campaign for a member",
+          "request": {
+            "name": "Buy a reward campaign for a member",
+            "description": {},
+            "url": {
+              "path": [
+                ":storeCode",
+                "admin",
+                "customer",
+                ":customer",
+                "campaign",
+                ":campaign",
+                "buy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "DEFAULT",
+                  "key": "storeCode",
+                  "description": "(Required) The store the request is scoped to."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customer",
+                  "description": "(Required) Member (customer) identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaign",
+                  "description": "(Required) Reward campaign identifier."
+                },
+                {
+                  "description": "Your Open Loyalty tenant subdomain.",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11ffcaa8-7e12-416b-9287-03b45c54e3a5",
+              "name": "Reward campaign purchased for the member; points deducted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":storeCode",
+                    "admin",
+                    "customer",
+                    ":customer",
+                    "campaign",
+                    ":campaign",
+                    "buy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "DEFAULT",
+                      "key": "storeCode",
+                      "description": "(Required) The store the request is scoped to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customer",
+                      "description": "(Required) Member (customer) identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign",
+                      "description": "(Required) Reward campaign identifier."
+                    },
+                    {
+                      "description": "Your Open Loyalty tenant subdomain.",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Open Loyalty tenant subdomain.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-instance",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}.openloyalty.io/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c3f40491-afd5-4101-946a-4af05a38047d",
+    "name": "Open Loyalty REST Authorization Rewards API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API-first, headless loyalty and gamification platform. This document models a representative, grounded subset of the Open Loyalty REST API across members (customers), transactions, points transfers, reward campaigns, levels (tiers), and earning rules. Endpoints are scoped per store using a storeCode path segment. Open Loyalty is delivered as managed cloud SaaS on a per-tenant instance, so the server host below is a template - substitute your own Open Loyalty instance host. Requests and responses are JSON over HTTPS, authenticated with a JWT bearer token or a permanent API token.\n\nContact Support:\n Name: Open Loyalty",
+      "type": "text/plain"
+    }
+  }
+}

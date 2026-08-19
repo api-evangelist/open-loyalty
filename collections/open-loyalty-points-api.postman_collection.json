@@ -1,0 +1,648 @@
+{
+  "item": [
+    {
+      "id": "f9e6ab95-3e37-4605-ac07-faf9995260bb",
+      "name": "Points",
+      "description": {
+        "content": "Points transfers - the loyalty points ledger.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8b1d38d8-abd1-4040-b6c9-66d8b5cd15ce",
+          "name": "List points transfers",
+          "request": {
+            "name": "List points transfers",
+            "description": {},
+            "url": {
+              "path": [
+                ":storeCode",
+                "points",
+                "transfer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "10"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "DEFAULT",
+                  "key": "storeCode",
+                  "description": "(Required) The store the request is scoped to."
+                },
+                {
+                  "description": "Your Open Loyalty tenant subdomain.",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "59b0d5f0-faee-4e25-bbf0-cd844bdb6d20",
+              "name": "A paginated list of points transfers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":storeCode",
+                    "points",
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "DEFAULT",
+                      "key": "storeCode",
+                      "description": "(Required) The store the request is scoped to."
+                    },
+                    {
+                      "description": "Your Open Loyalty tenant subdomain.",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0193320-fbd1-4896-90d6-fe70cfa61bc0",
+          "name": "Add (award) points to a member",
+          "request": {
+            "name": "Add (award) points to a member",
+            "description": {},
+            "url": {
+              "path": [
+                ":storeCode",
+                "points",
+                "transfer",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "DEFAULT",
+                  "key": "storeCode",
+                  "description": "(Required) The store the request is scoped to."
+                },
+                {
+                  "description": "Your Open Loyalty tenant subdomain.",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer\": \"<string>\",\n  \"points\": \"<number>\",\n  \"comment\": \"<string>\",\n  \"validityDuration\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9ee50c61-1c40-4231-945d-2f053ed1e654",
+              "name": "Points awarded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":storeCode",
+                    "points",
+                    "transfer",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "DEFAULT",
+                      "key": "storeCode",
+                      "description": "(Required) The store the request is scoped to."
+                    },
+                    {
+                      "description": "Your Open Loyalty tenant subdomain.",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer\": \"<string>\",\n  \"points\": \"<number>\",\n  \"comment\": \"<string>\",\n  \"validityDuration\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "680f13c6-2dc2-40b8-b1b6-e7a61895bac4",
+          "name": "Spend (deduct) points from a member",
+          "request": {
+            "name": "Spend (deduct) points from a member",
+            "description": {},
+            "url": {
+              "path": [
+                ":storeCode",
+                "points",
+                "transfer",
+                "spend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "DEFAULT",
+                  "key": "storeCode",
+                  "description": "(Required) The store the request is scoped to."
+                },
+                {
+                  "description": "Your Open Loyalty tenant subdomain.",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer\": \"<string>\",\n  \"points\": \"<number>\",\n  \"comment\": \"<string>\",\n  \"validityDuration\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c5abf54d-b515-46b1-b71a-6948d3b94c94",
+              "name": "Points spent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":storeCode",
+                    "points",
+                    "transfer",
+                    "spend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "DEFAULT",
+                      "key": "storeCode",
+                      "description": "(Required) The store the request is scoped to."
+                    },
+                    {
+                      "description": "Your Open Loyalty tenant subdomain.",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer\": \"<string>\",\n  \"points\": \"<number>\",\n  \"comment\": \"<string>\",\n  \"validityDuration\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7da3b80-603f-4675-be32-04df2107caef",
+          "name": "Transfer points peer-to-peer between members",
+          "request": {
+            "name": "Transfer points peer-to-peer between members",
+            "description": {},
+            "url": {
+              "path": [
+                ":storeCode",
+                "customer",
+                "points",
+                "p2p-transfer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "DEFAULT",
+                  "key": "storeCode",
+                  "description": "(Required) The store the request is scoped to."
+                },
+                {
+                  "description": "Your Open Loyalty tenant subdomain.",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"receiver\": \"<string>\",\n  \"points\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0f682f2b-9db0-46b8-87ba-89900ce3cb23",
+              "name": "Points transferred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":storeCode",
+                    "customer",
+                    "points",
+                    "p2p-transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "DEFAULT",
+                      "key": "storeCode",
+                      "description": "(Required) The store the request is scoped to."
+                    },
+                    {
+                      "description": "Your Open Loyalty tenant subdomain.",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"receiver\": \"<string>\",\n  \"points\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52a96df9-a510-48b4-8be8-116a341bc675",
+          "name": "Cancel a points transfer",
+          "request": {
+            "name": "Cancel a points transfer",
+            "description": {},
+            "url": {
+              "path": [
+                ":storeCode",
+                "points",
+                "transfer",
+                ":transfer",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "DEFAULT",
+                  "key": "storeCode",
+                  "description": "(Required) The store the request is scoped to."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transfer",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Open Loyalty tenant subdomain.",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a0bda72-b0b0-47cc-88ad-103ebf3848a0",
+              "name": "Points transfer cancelled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":storeCode",
+                    "points",
+                    "transfer",
+                    ":transfer",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "DEFAULT",
+                      "key": "storeCode",
+                      "description": "(Required) The store the request is scoped to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transfer",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Open Loyalty tenant subdomain.",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Open Loyalty tenant subdomain.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-instance",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}.openloyalty.io/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4e8b5d64-82b4-43c9-8391-090c9089c4f2",
+    "name": "Open Loyalty REST Authorization Points API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API-first, headless loyalty and gamification platform. This document models a representative, grounded subset of the Open Loyalty REST API across members (customers), transactions, points transfers, reward campaigns, levels (tiers), and earning rules. Endpoints are scoped per store using a storeCode path segment. Open Loyalty is delivered as managed cloud SaaS on a per-tenant instance, so the server host below is a template - substitute your own Open Loyalty instance host. Requests and responses are JSON over HTTPS, authenticated with a JWT bearer token or a permanent API token.\n\nContact Support:\n Name: Open Loyalty",
+      "type": "text/plain"
+    }
+  }
+}
