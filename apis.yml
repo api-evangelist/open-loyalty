@@ -35,6 +35,15 @@ tags:
 - Loyalty Program
 - Customer Engagement
 - Headless
+- API-First
+tags_raw:
+- Loyalty
+- Gamification
+- Rewards
+- Points
+- Loyalty Program
+- Customer Engagement
+- Headless
 - API First
 created: '2026-07-10'
 modified: '2026-07-10'
@@ -214,6 +223,8 @@ apis:
   humanURL: https://docs.openloyalty.io/en/latest/api/customer.html
   baseURL: https://your-instance.openloyalty.io/api
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
