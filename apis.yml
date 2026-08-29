@@ -13,6 +13,18 @@ description: >-
   JWT bearer token (per-store and admin login) or a permanent API token. The API
   is scoped per store using a storeCode path segment, and change events are
   delivered to consumers via outbound HTTP webhook callbacks.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
