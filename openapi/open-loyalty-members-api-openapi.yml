@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Open Loyalty REST Authorization Members API
+  title: Open Loyalty REST Members API
   version: '1.0'
-  description: API-first, headless loyalty and gamification platform. This document models a representative, grounded subset of the Open Loyalty REST API across members (customers), transactions, points transfers, reward campaigns, levels (tiers), and earning rules. Endpoints are scoped per store using a storeCode path segment. Open Loyalty is delivered as managed cloud SaaS on a per-tenant instance, so the server host below is a template - substitute your own Open Loyalty instance host. Requests and responses are JSON over HTTPS, authenticated with a JWT bearer token or a permanent API token.
+  description: API-first, headless loyalty and gamification platform.
   contact:
     name: Open Loyalty
     url: https://www.openloyalty.io
@@ -167,13 +167,6 @@ components:
       schema:
         type: integer
         default: 10
-    CustomerId:
-      name: customer
-      in: path
-      required: true
-      description: Member (customer) identifier.
-      schema:
-        type: string
     StoreCode:
       name: storeCode
       in: path
@@ -182,26 +175,14 @@ components:
       schema:
         type: string
         default: DEFAULT
+    CustomerId:
+      name: customer
+      in: path
+      required: true
+      description: Member (customer) identifier.
+      schema:
+        type: string
   schemas:
-    Customer:
-      type: object
-      properties:
-        customerId:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        phone:
-          type: string
-        levelId:
-          type: string
-        loyaltyCardNumber:
-          type: string
-        active:
-          type: boolean
     CustomerRegistration:
       type: object
       properties:
@@ -221,6 +202,25 @@ components:
       required:
       - firstName
       - lastName
+    Customer:
+      type: object
+      properties:
+        customerId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        levelId:
+          type: string
+        loyaltyCardNumber:
+          type: string
+        active:
+          type: boolean
   securitySchemes:
     bearerAuth:
       type: http

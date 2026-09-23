@@ -1,13 +1,7 @@
 {
   "provider": "open-loyalty",
   "sources": [
-    "open-loyalty-authorization-api-openapi.yml",
-    "open-loyalty-earning-rules-api-openapi.yml",
-    "open-loyalty-members-api-openapi.yml",
-    "open-loyalty-points-api-openapi.yml",
-    "open-loyalty-rewards-api-openapi.yml",
-    "open-loyalty-tiers-api-openapi.yml",
-    "open-loyalty-transactions-api-openapi.yml"
+    "_original/open-loyalty-openapi.yml"
   ],
   "outputs": [
     "open-loyalty-authorization-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "open-loyalty-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "open-loyalty-authorization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "open-loyalty-earning-rules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "open-loyalty-members-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "open-loyalty-points-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "open-loyalty-rewards-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "open-loyalty-tiers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "open-loyalty-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
