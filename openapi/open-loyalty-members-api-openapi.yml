@@ -154,54 +154,7 @@ paths:
         '200':
           description: The member's loyalty activity history.
 components:
-  parameters:
-    Page:
-      name: page
-      in: query
-      schema:
-        type: integer
-        default: 1
-    PerPage:
-      name: perPage
-      in: query
-      schema:
-        type: integer
-        default: 10
-    StoreCode:
-      name: storeCode
-      in: path
-      required: true
-      description: The store the request is scoped to.
-      schema:
-        type: string
-        default: DEFAULT
-    CustomerId:
-      name: customer
-      in: path
-      required: true
-      description: Member (customer) identifier.
-      schema:
-        type: string
   schemas:
-    CustomerRegistration:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        phone:
-          type: string
-        birthDate:
-          type: string
-          format: date
-        agreement1:
-          type: boolean
-      required:
-      - firstName
-      - lastName
     Customer:
       type: object
       properties:
@@ -221,6 +174,53 @@ components:
           type: string
         active:
           type: boolean
+    CustomerRegistration:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        birthDate:
+          type: string
+          format: date
+        agreement1:
+          type: boolean
+      required:
+      - firstName
+      - lastName
+  parameters:
+    PerPage:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        default: 10
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+    StoreCode:
+      name: storeCode
+      in: path
+      required: true
+      description: The store the request is scoped to.
+      schema:
+        type: string
+        default: DEFAULT
+    CustomerId:
+      name: customer
+      in: path
+      required: true
+      description: Member (customer) identifier.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

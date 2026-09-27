@@ -106,6 +106,41 @@ paths:
         '200':
           description: Reward campaign purchased for the member; points deducted.
 components:
+  parameters:
+    CampaignId:
+      name: campaign
+      in: path
+      required: true
+      description: Reward campaign identifier.
+      schema:
+        type: string
+    PerPage:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        default: 10
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+    StoreCode:
+      name: storeCode
+      in: path
+      required: true
+      description: The store the request is scoped to.
+      schema:
+        type: string
+        default: DEFAULT
+    CustomerId:
+      name: customer
+      in: path
+      required: true
+      description: Member (customer) identifier.
+      schema:
+        type: string
   schemas:
     Campaign:
       type: object
@@ -124,41 +159,6 @@ components:
             type: string
         limit:
           type: integer
-  parameters:
-    PerPage:
-      name: perPage
-      in: query
-      schema:
-        type: integer
-        default: 10
-    CampaignId:
-      name: campaign
-      in: path
-      required: true
-      description: Reward campaign identifier.
-      schema:
-        type: string
-    StoreCode:
-      name: storeCode
-      in: path
-      required: true
-      description: The store the request is scoped to.
-      schema:
-        type: string
-        default: DEFAULT
-    Page:
-      name: page
-      in: query
-      schema:
-        type: integer
-        default: 1
-    CustomerId:
-      name: customer
-      in: path
-      required: true
-      description: Member (customer) identifier.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
