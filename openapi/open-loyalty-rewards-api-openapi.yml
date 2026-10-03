@@ -114,18 +114,13 @@ components:
       description: Reward campaign identifier.
       schema:
         type: string
-    PerPage:
-      name: perPage
-      in: query
+    CustomerId:
+      name: customer
+      in: path
+      required: true
+      description: Member (customer) identifier.
       schema:
-        type: integer
-        default: 10
-    Page:
-      name: page
-      in: query
-      schema:
-        type: integer
-        default: 1
+        type: string
     StoreCode:
       name: storeCode
       in: path
@@ -134,13 +129,18 @@ components:
       schema:
         type: string
         default: DEFAULT
-    CustomerId:
-      name: customer
-      in: path
-      required: true
-      description: Member (customer) identifier.
+    Page:
+      name: page
+      in: query
       schema:
-        type: string
+        type: integer
+        default: 1
+    PerPage:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        default: 10
   schemas:
     Campaign:
       type: object

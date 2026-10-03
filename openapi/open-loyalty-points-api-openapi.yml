@@ -109,6 +109,27 @@ paths:
         '200':
           description: Points transfer cancelled.
 components:
+  parameters:
+    PerPage:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        default: 10
+    StoreCode:
+      name: storeCode
+      in: path
+      required: true
+      description: The store the request is scoped to.
+      schema:
+        type: string
+        default: DEFAULT
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
   schemas:
     PointsTransfer:
       type: object
@@ -124,27 +145,6 @@ components:
       required:
       - customer
       - points
-  parameters:
-    StoreCode:
-      name: storeCode
-      in: path
-      required: true
-      description: The store the request is scoped to.
-      schema:
-        type: string
-        default: DEFAULT
-    PerPage:
-      name: perPage
-      in: query
-      schema:
-        type: integer
-        default: 10
-    Page:
-      name: page
-      in: query
-      schema:
-        type: integer
-        default: 1
   securitySchemes:
     bearerAuth:
       type: http

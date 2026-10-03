@@ -154,26 +154,35 @@ paths:
         '200':
           description: The member's loyalty activity history.
 components:
+  parameters:
+    CustomerId:
+      name: customer
+      in: path
+      required: true
+      description: Member (customer) identifier.
+      schema:
+        type: string
+    StoreCode:
+      name: storeCode
+      in: path
+      required: true
+      description: The store the request is scoped to.
+      schema:
+        type: string
+        default: DEFAULT
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+    PerPage:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        default: 10
   schemas:
-    Customer:
-      type: object
-      properties:
-        customerId:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        phone:
-          type: string
-        levelId:
-          type: string
-        loyaltyCardNumber:
-          type: string
-        active:
-          type: boolean
     CustomerRegistration:
       type: object
       properties:
@@ -193,34 +202,25 @@ components:
       required:
       - firstName
       - lastName
-  parameters:
-    PerPage:
-      name: perPage
-      in: query
-      schema:
-        type: integer
-        default: 10
-    Page:
-      name: page
-      in: query
-      schema:
-        type: integer
-        default: 1
-    StoreCode:
-      name: storeCode
-      in: path
-      required: true
-      description: The store the request is scoped to.
-      schema:
-        type: string
-        default: DEFAULT
-    CustomerId:
-      name: customer
-      in: path
-      required: true
-      description: Member (customer) identifier.
-      schema:
-        type: string
+    Customer:
+      type: object
+      properties:
+        customerId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        levelId:
+          type: string
+        loyaltyCardNumber:
+          type: string
+        active:
+          type: boolean
   securitySchemes:
     bearerAuth:
       type: http
