@@ -263,6 +263,9 @@ apis:
   - type: APIReference
     url: https://docs.openloyalty.io/en/latest/api/earning_rule.html
 common:
+- type: CapabilityMap
+  url: capabilities/open-loyalty-capability-edges.yml
+  name: Open Loyalty Business Capability Map
 - type: AgenticAccess
   url: agentic-access/open-loyalty-agentic-access.yml
 - type: DomainSecurity

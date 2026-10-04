@@ -1,0 +1,74 @@
+slug: open-loyalty
+provider: Open Loyalty
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Earning Rules
+  spec_file: open-loyalty-earning-rules-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.9
+  evidence: '''Create an earning rule'', ''Activate or deactivate an earning rule'' on an ''API-first,
+    headless loyalty and gamification platform'''
+  reason: Earning rules define how loyalty members accrue points — core configuration of a loyalty programme,
+    which maps squarely to Loyalty & Retention Management.
+- tag: Points
+  spec_file: open-loyalty-points-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.9
+  evidence: '''Add (award) points to a member'', ''Spend (deduct) points from a member'', ''Transfer points
+    peer-to-peer between members'''
+  reason: Loyalty point ledger operations (accrual, redemption, transfer, cancellation) on a loyalty platform
+    — the operational heart of a loyalty programme, not financial payments.
+- tag: Members
+  spec_file: open-loyalty-members-api-openapi.yml
+  capability_id: BC-420
+  capability_id_l1: BC-420
+  capability_name: Customer Relationship Management
+  confidence: 0.85
+  evidence: '''Register a new member'', ''Assign a member to a level'', "Get a member''s loyalty history"'
+  reason: Member registration, profile maintenance, tier assignment and loyalty history on a loyalty platform.
+    Clearly Customer Relationship Management at L1; evidence straddles customer data management and loyalty
+    programme administration, so no L2 is asserted.
+- tag: Rewards
+  spec_file: open-loyalty-rewards-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.85
+  evidence: '"List reward campaigns", "Create a reward campaign", "Buy a reward campaign for a member"
+    on an "API-first, headless loyalty and gamification platform"'
+  reason: Operations manage reward campaigns redeemable by loyalty members, which is loyalty programme
+    administration under Customer Relationship Management.
+- tag: Tiers
+  spec_file: open-loyalty-tiers-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.85
+  evidence: '"List levels (tiers)", "List members assigned to a level"'
+  reason: Tier/level definition and member assignment is a core loyalty programme mechanic, mapping to
+    Loyalty & Retention Management.
+- tag: Transactions
+  spec_file: open-loyalty-transactions-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.7
+  evidence: '"Simulate the points a transaction would earn", "Assign a transaction to a member"'
+  reason: Transactions here are loyalty-qualifying purchase records used to earn points for members, so
+    it serves the loyalty programme rather than financial accounting; some ambiguity as it is also a customer
+    activity data store.
