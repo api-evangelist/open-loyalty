@@ -106,26 +106,13 @@ paths:
         '200':
           description: Members currently in this level.
 components:
-  schemas:
-    Level:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        conditionValue:
-          type: number
-        active:
-          type: boolean
-        reward:
-          type: object
-          properties:
-            name:
-              type: string
-            value:
-              type: number
   parameters:
+    PerPage:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        default: 10
     StoreCode:
       name: storeCode
       in: path
@@ -147,12 +134,25 @@ components:
       description: Level (tier) identifier.
       schema:
         type: string
-    PerPage:
-      name: perPage
-      in: query
-      schema:
-        type: integer
-        default: 10
+  schemas:
+    Level:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        conditionValue:
+          type: number
+        active:
+          type: boolean
+        reward:
+          type: object
+          properties:
+            name:
+              type: string
+            value:
+              type: number
   securitySchemes:
     bearerAuth:
       type: http

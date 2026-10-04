@@ -106,27 +106,6 @@ paths:
         '200':
           description: Earning rule activation state changed.
 components:
-  parameters:
-    PerPage:
-      name: perPage
-      in: query
-      schema:
-        type: integer
-        default: 10
-    StoreCode:
-      name: storeCode
-      in: path
-      required: true
-      description: The store the request is scoped to.
-      schema:
-        type: string
-        default: DEFAULT
-    Page:
-      name: page
-      in: query
-      schema:
-        type: integer
-        default: 1
   schemas:
     EarningRule:
       type: object
@@ -146,6 +125,27 @@ components:
         endAt:
           type: string
           format: date-time
+  parameters:
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+    PerPage:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        default: 10
+    StoreCode:
+      name: storeCode
+      in: path
+      required: true
+      description: The store the request is scoped to.
+      schema:
+        type: string
+        default: DEFAULT
   securitySchemes:
     bearerAuth:
       type: http

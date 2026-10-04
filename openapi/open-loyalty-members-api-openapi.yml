@@ -154,34 +154,6 @@ paths:
         '200':
           description: The member's loyalty activity history.
 components:
-  parameters:
-    CustomerId:
-      name: customer
-      in: path
-      required: true
-      description: Member (customer) identifier.
-      schema:
-        type: string
-    StoreCode:
-      name: storeCode
-      in: path
-      required: true
-      description: The store the request is scoped to.
-      schema:
-        type: string
-        default: DEFAULT
-    Page:
-      name: page
-      in: query
-      schema:
-        type: integer
-        default: 1
-    PerPage:
-      name: perPage
-      in: query
-      schema:
-        type: integer
-        default: 10
   schemas:
     CustomerRegistration:
       type: object
@@ -221,6 +193,34 @@ components:
           type: string
         active:
           type: boolean
+  parameters:
+    PerPage:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        default: 10
+    StoreCode:
+      name: storeCode
+      in: path
+      required: true
+      description: The store the request is scoped to.
+      schema:
+        type: string
+        default: DEFAULT
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+    CustomerId:
+      name: customer
+      in: path
+      required: true
+      description: Member (customer) identifier.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
