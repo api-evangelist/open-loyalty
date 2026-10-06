@@ -61,7 +61,7 @@ tags_raw:
 - API First
 - Loyalty & Incentives
 created: '2026-07-10'
-modified: '2026-07-10'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: open-loyalty:open-loyalty-authorization-api
@@ -263,6 +263,10 @@ apis:
   - type: APIReference
     url: https://docs.openloyalty.io/en/latest/api/earning_rule.html
 common:
+- url: https://www.openloyalty.io/insider
+  type: Blog
+- url: https://www.openloyalty.io/insider/rss.xml
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/open-loyalty-capability-edges.yml
   name: Open Loyalty Business Capability Map
