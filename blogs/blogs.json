@@ -1,0 +1,21 @@
+{
+  "repo": "open-loyalty",
+  "feeds": [
+    {
+      "source": "https://www.openloyalty.io/insider",
+      "feed_url": "https://www.openloyalty.io/insider/rss.xml",
+      "title": "",
+      "saved": 10,
+      "method": "discovered"
+    },
+    {
+      "source": "https://www.openloyalty.io/insider/rss.xml",
+      "feed_url": "https://www.openloyalty.io/insider/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-10-10T13:15:00Z"
+}
