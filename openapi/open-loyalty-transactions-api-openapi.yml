@@ -116,12 +116,6 @@ paths:
           description: Transaction assigned.
 components:
   parameters:
-    Page:
-      name: page
-      in: query
-      schema:
-        type: integer
-        default: 1
     PerPage:
       name: perPage
       in: query
@@ -136,6 +130,12 @@ components:
       schema:
         type: string
         default: DEFAULT
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
   schemas:
     Transaction:
       type: object
