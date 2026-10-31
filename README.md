@@ -1,4 +1,4 @@
-# Open Loyalty (open-loyalty)
+# Open Loyalty
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,89 +64,130 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Open Loyalty is an API-first, headless loyalty and gamification platform. Every loyalty mechanic - members (customers), transactions, points, tiers/levels, earning rules, reward campaigns, and analytics - is exposed through a documented REST API, so brands build custom loyalty experiences on top of Open Loyalty rather than a fixed UI. The platform grew from an open-source loyalty engine (still available as a GitHub Open Source Edition, Apache-2.0, capped at ~200 members for testing) into a managed, cloud-hosted SaaS.
+Open Loyalty is an API-first, headless loyalty and gamification platform. Every loyalty mechanic - members, transactions, points, tiers/levels, earning rules, reward campaigns, and analytics - is exposed through a documented REST API, so brands assemble custom loyalty experiences on top of Open Loyalty rather than a fixed UI. The platform grew from an open-source loyalty engine (still available as a GitHub Open Source Edition capped at 200 members for testing) into a managed, cloud-hosted SaaS. Requests are JSON over HTTPS, authenticated with a JWT bearer token (per-store and admin login) or a permanent API token. The API is scoped per store using a storeCode path segment, and change events are delivered to consumers via outbound HTTP webhook callbacks.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/open-loyalty/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/open-loyalty/refs/heads/main/apis.yml)
+**Areas:** Loyalty · Gamification · Rewards · Points · Loyalty Program · Customer Engagement · Headless · API-First · Loyalty & Incentives
 
-## Access Model (be honest)
+## Open Loyalty on APIs.io
 
-- **Public API status:** Open Loyalty publishes a full, public REST API reference at [docs.openloyalty.io](https://docs.openloyalty.io/en/latest/api/) plus an interactive reference at [apidocs.openloyalty.io](https://apidocs.openloyalty.io/). The API is real and documented in detail, but you exercise it against **your own provisioned tenant instance** - Open Loyalty is per-tenant cloud SaaS, so there is no single shared public base host. The base URLs in this catalog use a `your-instance.openloyalty.io` template that you substitute with your tenant host (or `localhost` for a self-hosted Open Source Edition).
-- **Authentication:** JWT bearer token obtained from `POST /admin/login_check` (admin) or `POST /{storeCode}/customer/login_check` (member), or a permanent `X-AUTH-TOKEN` API token. The overview docs also mention OAuth 2.0 as a supported pattern, but the concrete documented login flow is JWT.
-- **Store scoping:** Almost every endpoint is scoped to a store via a `storeCode` path segment, e.g. `/api/<storeCode>/customer`.
-- **Open source vs cloud:** The GitHub Open Source Edition ([github.com/OpenLoyalty](https://github.com/OpenLoyalty)) is self-hostable but limited to ~200 members, has no guaranteed performance/scalability, and is meant for testing. Production is the managed cloud SaaS, sold contact-sales and billed on Monthly Active Members.
-- **Events:** Asynchronous notifications are delivered via outbound HTTP webhook callbacks (not a WebSocket). See `review.yml`.
+Everything profiled for Open Loyalty is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/open-loyalty/](https://apis.io/providers/open-loyalty/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-- Loyalty
-- Gamification
-- Rewards
-- Points
-- Loyalty Program
-- Customer Engagement
-- Headless
-- API First
+- [Open Loyalty Authorization API](https://apis.io/apis/open-loyalty/open-loyalty-authorization-api/) — Authentication and token issuance.
+- [Open Loyalty Earning Rules API](https://apis.io/apis/open-loyalty/open-loyalty-earning-rules-api/) — Rules that define how members earn points.
+- [Open Loyalty Members API](https://apis.io/apis/open-loyalty/open-loyalty-members-api/) — Loyalty members (customers).
+- [Open Loyalty Points API](https://apis.io/apis/open-loyalty/open-loyalty-points-api/) — Points transfers - the loyalty points ledger.
+- [Open Loyalty Rewards API](https://apis.io/apis/open-loyalty/open-loyalty-rewards-api/) — Reward campaigns, coupons, and redemption.
+- [Open Loyalty Tiers API](https://apis.io/apis/open-loyalty/open-loyalty-tiers-api/) — Levels (loyalty tiers).
+- [Open Loyalty Transactions API](https://apis.io/apis/open-loyalty/open-loyalty-transactions-api/) — Purchase transactions and points accrual.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-07-10
-- **Modified:** 2026-07-10
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Open Loyalty Customer API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Register, list, read, and update loyalty members (customers), check existence by email or phone, manage activation and status, assign members to levels and POS, and read per-member history.
+- [Open Loyalty Agentic Access](https://apis.io/agentic-access/open-loyalty/open-loyalty-agentic-access/)
 
-- **Human URL:** [https://docs.openloyalty.io/en/latest/api/customer.html](https://docs.openloyalty.io/en/latest/api/customer.html)
-- **Base URL:** `https://your-instance.openloyalty.io/api`
+#### Collections (8)
 
-### Open Loyalty Transactions API
+Postman and Open Collection request collections.
 
-Register purchase transactions, simulate the points a transaction would earn before committing, list and read transactions, assign transactions to members, import in bulk, and manage item labels.
+- [Open Loyalty REST API](https://apis.io/collections/open-loyalty/open-open-loyalty/)
+- [Open Loyalty REST Authorization API](https://apis.io/collections/open-loyalty/open-open-loyalty-authorization-api/)
+- [Open Loyalty REST Authorization Earning Rules API](https://apis.io/collections/open-loyalty/open-open-loyalty-earning-rules-api/)
+- [Open Loyalty REST Authorization Members API](https://apis.io/collections/open-loyalty/open-open-loyalty-members-api/)
+- [Open Loyalty REST Authorization Points API](https://apis.io/collections/open-loyalty/open-open-loyalty-points-api/)
+- [Open Loyalty REST Authorization Rewards API](https://apis.io/collections/open-loyalty/open-open-loyalty-rewards-api/)
+- [Open Loyalty REST Authorization Tiers API](https://apis.io/collections/open-loyalty/open-open-loyalty-tiers-api/)
+- [Open Loyalty REST Authorization Transactions API](https://apis.io/collections/open-loyalty/open-open-loyalty-transactions-api/)
 
-- **Human URL:** [https://docs.openloyalty.io/en/latest/api/transactions.html](https://docs.openloyalty.io/en/latest/api/transactions.html)
-- **Base URL:** `https://your-instance.openloyalty.io/api`
+#### Security (2)
 
-### Open Loyalty Points Transfers API
+Authentication, trust centre, and vulnerability disclosure.
 
-Award (add) and spend points, transfer points peer-to-peer between members, and cancel, activate, expire, or block a points transfer. The ledger surface for the loyalty points economy.
+- [Open Loyalty Authentication](https://apis.io/security/open-loyalty/open-loyalty-authentication/)
+- [Open Loyalty Domain Security](https://apis.io/security/open-loyalty/open-loyalty-domain-security/)
 
-- **Human URL:** [https://docs.openloyalty.io/en/latest/api/points_transfers.html](https://docs.openloyalty.io/en/latest/api/points_transfers.html)
-- **Base URL:** `https://your-instance.openloyalty.io/api`
+#### Plans and pricing (1)
 
-### Open Loyalty Reward Campaigns API
+Published plans, tiers and prices.
 
-Create and manage reward campaigns (the redeemable rewards catalog), toggle campaigns active, list active and publicly available campaigns, buy a reward campaign for a member, redeem/simulate cashback, and manage coupons and campaign media.
+- [Open Loyalty Plans Pricing](https://apis.io/plans/open-loyalty/open-loyalty-plans-pricing/)
 
-- **Human URL:** [https://docs.openloyalty.io/en/latest/api/campaign.html](https://docs.openloyalty.io/en/latest/api/campaign.html)
-- **Base URL:** `https://your-instance.openloyalty.io/api`
+#### Rate limits (1)
 
-### Open Loyalty Levels API
+Published request limits.
 
-Create, list, read, update, activate, and delete loyalty tiers (levels), list the members assigned to a level, and manage level images.
+- [Open Loyalty Rate Limits](https://apis.io/rate-limits/open-loyalty/open-loyalty-rate-limits/)
 
-- **Human URL:** [https://docs.openloyalty.io/en/latest/api/level.html](https://docs.openloyalty.io/en/latest/api/level.html)
-- **Base URL:** `https://your-instance.openloyalty.io/api`
+#### FinOps (1)
 
-### Open Loyalty Earning Rules API
+What the API costs to run, by operation.
 
-Create, list, read, update, and activate the earning rules that define how members earn points - purchase-based, event-based, QR code scans, and geolocation check-ins.
+- [Open Loyalty Finops](https://apis.io/finops/open-loyalty/open-loyalty-finops/)
 
-- **Human URL:** [https://docs.openloyalty.io/en/latest/api/earning_rule.html](https://docs.openloyalty.io/en/latest/api/earning_rule.html)
-- **Base URL:** `https://your-instance.openloyalty.io/api`
+## Where to find this API
 
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- [GitHub Organization](https://github.com/OpenLoyalty)
-- [LinkedIn](https://www.linkedin.com/company/openloyalty)
 - [Website](https://www.openloyalty.io)
 - [Documentation](https://docs.openloyalty.io/en/latest/api/)
-- [Plans](plans/open-loyalty-plans-pricing.yml)
-- [Rate Limits](rate-limits/open-loyalty-rate-limits.yml)
-- [Fin Ops](finops/open-loyalty-finops.yml)
+- [Blog](https://www.openloyalty.io/insider)
+- [GitHub](https://github.com/OpenLoyalty)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 26.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 45.3 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 35.2 |
+| Access clarity | 7.9 |
+
+**Agent readiness 19.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/open-loyalty/](https://apis.io/providers/open-loyalty/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Open Loyalty: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/open-loyalty/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
